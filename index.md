@@ -2,29 +2,50 @@
 
 By: Lynn Matar
 
-### Markdown
+# Introduction
+Try to implement some of the creative intros
 
-# Header 1
-## Header 2
-### Header 3
+# What is Haxball?
+Explain what it is, urge them to play it, add some gameplay and screenshots!
 
-- Bulleted
-- List
+# What is XG?
+Explain the basics of XG (Add some visuals)
 
-1. Numbered
-2. List
+## Why not just use shots on goal instead of XG?
+Explain why it is better!
 
-**Bold** and _Italic_ and `Code` text
+# How do we predict XG?
+Steps on how we are predicting it and what factors we looked at
 
-[Link](url) and ![Image](src)
-```
+# Haxball Machine Learning Project!
+Now for the part you have been waiting for! 
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## What data was collected?
+Look at data exploration
 
-### Jekyll Themes
+## Which features were created?
+List the features made and talk about the two/three main ones
+### Shot intersect
+### Player speed
+### Weighted Defender Distance'
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/lmatar/haxballblog.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## What models were tested and used?
+Talk about different types of models and their pros and cons.
+Talk about top models and which one we chose (Random Forrest)
 
-### Support or Contact
+## Overall results and improvements
+What the results were and how I improved from Edwins benchmarks 
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+# What were the main takeaways from the project?
+Explain what I learned and what I liked and what I would change if I could
+
+# How to view my model?
+Steps to see the model
+Link to the Github repo
+
+### Contact Information
+
+Email: lmatar@hawk.iit.edu
+
+### Special thank you
+Thank you to Vinesh Kannan for getting all this data and giving me the opportunity to work on the project and learn so much!
