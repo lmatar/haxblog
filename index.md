@@ -1,7 +1,36 @@
 ![Haxball!](/images/haxballtitle.png)
 
 # Introduction
-Try to implement some of the creative intros
+Before we start diving into the different aspects of this project, I have a challenge for you!
+
+Let's look at two screenshots...
+
+### Shot #1
+![Haxball!](/images/intro2.png)
+
+### Shot #2
+![Haxball!](/images/intro1.png)
+
+From the two pictures shown above, which shot is more likely to be an **expected goal** in your opinion?
+* [ ] Shot #1
+* [ ] Shot #2
+
+Now lets look at the expected goal score that my model predicted...
+#### Shot #1
+Expected Goal = 0.193
+
+#### Shot #2
+Expected Goal = 0.510
+
+*Note: If you are not sure what these values mean, don't worry! I will be explaining it soon.* 
+
+Now with the images and the expected goal value, which shot is more likely to be an **expected goal** in your opinion?
+* [ ] Shot #1
+* [ ] Shot #2
+
+Let's dive deeper into this project and see what expected goal (XG) is and how I was able to make a machine learning model to predict it!
+
+*If you want to see if your guess was right, read until the end to find out!* 
 
 # What is Haxball?
 Explain what it is, urge them to play it, add some gameplay and screenshots!
@@ -24,7 +53,7 @@ Look at data exploration
 ## Which features were created?
 List the features made and talk about the two/three main ones
 ### Shot intersect
-```  
+``` 
 def shot_intersection(match,kick, stadium, frame):
     '''Finds where the ball would intersect
     Args:
@@ -36,25 +65,19 @@ def shot_intersection(match,kick, stadium, frame):
     Int 1 or 0 if the ball is going towars the goal or not
     '''
     #Getting last frame before the kick 
-    #print("Calculate intersection at time: {}".format(kick["time"] - offset))
-    #frame = get_positions_at_time(match["positions"], kick["time"] - offset)
     #Using in range and tracing back to see what frame was right before it left the foot
     #A list of lists with only info about player we want and ball
     shooter_frames = []
     ball_frames = []
-    #print(kick['fromName'])
     for i in frame:
         if i['name'] == kick['fromName']: 
             shooter_frames.append(i)  
         elif i['type'] == 'ball':
             ball_frames.append(i)
-    #print(shooter_frames)
-    #print(ball_frames)
     #picking frame with least dist
     least_dist = float('inf')
     player_position = {}
     ball_position = {}
-    #List of dicts
     length = min(len(shooter_frames),len(ball_frames))
     set_dist = 30 #ball and player are at least get within 30 units then we assume that it was kicked
     
@@ -74,13 +97,9 @@ def shot_intersection(match,kick, stadium, frame):
                 least_dist = dist
             else: #stopped decreasing
                 break
-    #print(frame)
-    #print(player_position)
-    #print(ball_position)
     #Getting goal positions
     goal_mid = get_opposing_goalpost(stadium, kick['fromTeam'])['mid']
-    #print(goal_mid)
-     #Extend line from shot angle (can't extend lines easily)
+    #Extend line from shot angle (can't extend lines easily)
     if(len(player_position)==0 or len(ball_position)==0):
         return None, None, None
     y_val = point_slope(
@@ -90,8 +109,8 @@ def shot_intersection(match,kick, stadium, frame):
     )
     #Checking if the projection between the posts
     intersect = { 'x': goal_mid['x'], 'y': y_val }
-    return player_position, ball_position, intersect 
-    ```
+    return player_position, ball_position, intersect
+``` 
     
 ### Player speed
 ### Weighted Defender Distance
