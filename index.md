@@ -24,7 +24,7 @@ Look at data exploration
 ## Which features were created?
 List the features made and talk about the two/three main ones
 ### Shot intersect
-`  
+```  
 def shot_intersection(match,kick, stadium, frame):
     '''Finds where the ball would intersect
     Args:
@@ -91,7 +91,7 @@ def shot_intersection(match,kick, stadium, frame):
     #Checking if the projection between the posts
     intersect = { 'x': goal_mid['x'], 'y': y_val }
     return player_position, ball_position, intersect 
-    `
+    ```
     
 ### Player speed
 ### Weighted Defender Distance
@@ -114,5 +114,5 @@ Link to the Github repo
 
 Email: lmatar@hawk.iit.edu
 
-## Special thank you
-Thank you to Vinesh Kannan for getting all this data and giving me the opportunity to work on the project and learn so much!
+## Special Thank you to...
+Vinesh Kannan for getting all this data and giving me the opportunity to work on the project and learn so much!
