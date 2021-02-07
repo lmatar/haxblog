@@ -1,4 +1,4 @@
-![Haxball!](/images/haxballtitle.jpb)
+![Haxball!](/images/haxballtitle.png)
 
 # Introduction
 Try to implement some of the creative intros
