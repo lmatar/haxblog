@@ -1,6 +1,4 @@
-## HaxBlog!
-
-By: Lynn Matar
+![Haxball!](/images/haxballtitle.jpb)
 
 # Introduction
 Try to implement some of the creative intros
@@ -47,5 +45,5 @@ Link to the Github repo
 
 Email: lmatar@hawk.iit.edu
 
-### Special thank you
+## Special thank you
 Thank you to Vinesh Kannan for getting all this data and giving me the opportunity to work on the project and learn so much!
