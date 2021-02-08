@@ -25,8 +25,8 @@ Expected Goal = 0.510
 *Note: If you are not sure what these values mean, don't worry! I will be explaining it soon.* 
 
 Now with the images and the expected goal value, which shot is more likely to be an **expected goal** in your opinion?
-* [ ] Shot #1
-* [ ] Shot #2
+ * [ ]  Shot #1
+ * [ ]  Shot #2
 
 Let's dive deeper into this project and see what expected goal (XG) is and how I was able to make a machine learning model to predict it!
 
@@ -113,7 +113,68 @@ def shot_intersection(match,kick, stadium, frame):
 ``` 
     
 ### Player speed
+
+```
+def speed_player(match,kick,player_name,positions):
+    '''' Speed of the player
+       Args:
+           match: Which match it is
+           kick: Which kick we want to measure
+           player_name: What player do we want to measure the speed for
+
+        Returns:
+           Int that represents the speed of the player
+    '''
+    player_pos = []
+    for i in positions:
+        if i['name'] == player_name: 
+            player_pos.append(i)    
+    #Getting the time
+    if len(player_pos) > 1:
+        last = len(player_pos)-1#getting last index)
+        time = player_pos[last]['time'] -  player_pos[0]['time'] 
+        #Getting the distance 
+        distance = stadium_distance(player_pos[0]['x'],player_pos[0]['y'],player_pos[last]['x'],player_pos[last]['y'])
+        return distance/time
+    else:
+        return 0
+ ```
 ### Weighted Defender Distance
+
+```
+def defender_feature_weighted(match,kick,stadium,positions,dist=0):
+    '''Figuring out the closest defender and num of defenders for a kick
+        Note: This is weighted so that defenders that are close to the player/ball or the goal count as 1.5 rather than 1
+        Args:
+            match: Which match it is
+            kick: Which kick we want to measure
+            dist: Set distance to consider a player pressuring
+
+        Returns:
+                List that contains the distance of the closest defender and the number of defenders (weighted)
+'''
+    closest_defender = float('inf')
+    defenders_pressuring = 0
+    ret = [0,0]
+    for person in positions:
+        if person['team'] is not kick['fromTeam'] and person['type'] == "player": 
+            defender_dist = stadium_distance(kick['fromX'],kick['fromY'],person['x'],person['y'])
+            if defender_dist < closest_defender:
+                closest_defender = defender_dist
+                ret[0] = closest_defender
+            if defender_dist <= dist:
+                #Checking distances  for weights
+                post = get_opposing_goalpost(stadium, kick['fromTeam'])
+                goal_dist = stadium_distance(post['mid']['x'], post['mid']['y'] ,person['x'],person['y'])
+                if defender_dist <= 5:
+                    defenders_pressuring += 1.5
+                elif goal_dist <= 5:
+                    defenders_pressuring += 1.5
+                else:
+                    defenders_pressuring += 1
+                ret[1] = defenders_pressuring
+    return ret
+```
 
 ## What models were tested and used?
 Talk about different types of models and their pros and cons.
