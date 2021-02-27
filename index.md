@@ -203,16 +203,16 @@ I used ablation testing, which is a way to understand  the contribution and impa
 # What were the main takeaways from the project?
 This unique project was a great opportunity for me to learn about many different aspects of software development and machine learning! 
 
-##Building on top of someone else’s code
+## Building on top of someone else’s code
 Most class projects make you start coding from scratch or give you very minimal starter code that is fairly easy to understand. However, in the real world as a software developer and in this project, you have to build on top of old code. Writing code is very important, but understanding others' code is a very important skill. This also means that when I write code, I will always try to put comments and make it as understandable as I can so that I can make the next person’s life a bit easier!
 
-##User feedback is very important
+## User feedback is very important
 One of my most complicated features was the shot intersection feature. While I was in the meeting getting user feedback from Edwin’s model, one player pointed out that one goal was an “open goal” that was shot directly towards the goal and yet the predicted XG was low. This gave me the idea to get where the shot should intersect in order to better predict if it will go in. Thanks to the user feedback, I was able to create a cool feature that improved the model!
 
-##Understanding data schemas make life easier
+## Understanding data schemas make life easier
 I never had to understand data that is this large and complicated. The dataset is unique and the format can get confusing. I learned that before developing any feature, I had to know the data very well or else I would be wasting time debugging data structure related errors.
 
-##Keep scaling in mind at the start of any project
+## Keep scaling in mind at the start of any project
 I had the ability to work on a scaling problem in this project as well. Once my model was deployed, Vinesh noticed that the loading time for the models drastically increased. We wanted to make sure that as more models are deployed, this problem doesn’t occur. I was able to get the models to be lazily evaluated instead of loading all the models at once. This means that only the default model will be loaded right away but all the other models will only be loaded when the user wants to see their predictions.
 
 Before this improvement, it took 7.3 seconds to start up the server and after it went all the way down to 2.5 seconds!
