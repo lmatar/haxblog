@@ -1,7 +1,7 @@
 ![Haxball!](/images/haxballtitle.png)
 
 # Introduction
-Before we start diving into the different aspects of this project, I have a challenge for you!
+Before we dive into the different aspects of this project, I have a challenge for you!
 
 Let's look at two screenshots...
 
@@ -11,22 +11,23 @@ Let's look at two screenshots...
 ### Shot #2
 ![Haxball!](/images/intro1.png)
 
-From the two pictures shown above, which shot is more likely to be an **expected goal** in your opinion?
-* Shot #1
-* Shot #2
+From the two pictures shown above, which shot is more likely to be a **goal** in your opinion?
+- [] Shot #1
+- [] Shot #2
 
 Now lets look at the expected goal score that my model predicted...
+
 #### Shot #1
 Expected Goal = 0.193
 
 #### Shot #2
 Expected Goal = 0.510
 
-*Note: If you are not sure what these values mean, don't worry! I will be explaining it soon.* 
+*Note: If you are not sure what these values mean, don’t worry! I will explain it soon.* 
 
-Now with the images and the expected goal value, which shot is more likely to be an **expected goal** in your opinion?
- * Shot #1
- * Shot #2
+Now with the images and the expected goal value, which shot is more likely to be a **goal** in your opinion?
+ - [] Shot #1
+ - []Shot #2
 
 Let’s dive deeper into this project and see what the expected goal (XG) is and how I was able to make a machine learning model predict it!
 
@@ -178,6 +179,11 @@ When we build a model,we need to choose a train/test split. We use this split be
 The results below are from the testing data since those are the important metrics that help us evaluate the performance of the model.
 
 These were Edwin’s final results:
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
 
 *Note: Edwin’s results here are slightly different from his blog post because after Edwin deployed his models, we changed the filtering to only 3v3 and 4v4 match stadiums. These are the performance scores for Edwon’s model on the same test dataset as mine so that we can make sure to compare more accurately.*
 
