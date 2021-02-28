@@ -199,7 +199,8 @@ These are my results of my top two models after improving:
 
 | Model         | Parameters    | Features      | Accuracy | Precision | Recall | ROC AUC |
 | ------------- | ------------- | ------------- | ---------| ----------| -------| --------|
-| Random Forest | max_depth=15  | goal_distance,goal_angle, defender_dist, closest_defender, defenders_within_box, in_box, in_shot, ball_speed|  0.980   |  0.745    | 0.320  | 0.658   | | Random Forest | max_depth=15  | goal_angle, goal_distance, defender_dist, closest_defender, in_box, defenders_within_shot, in_shot, ball_speed, on_goal, player_speed, weighted_def_dist |  0.980   |  0.767    | 0.292  | 0.645  |
+| Random Forest | max_depth=15  | goal_distance,goal_angle, defender_dist, closest_defender, defenders_within_box, in_box, in_shot, ball_speed|  0.980   |  0.745    | 0.320  | 0.658   |
+| Random Forest | max_depth=15  | goal_angle, goal_distance, defender_dist, closest_defender, in_box, defenders_within_shot, in_shot, ball_speed, on_goal, player_speed, weighted_def_dist |  0.980   |  0.767    | 0.292  | 0.645  |
 
 *Both of these models are deployed but I decided the to compare the first one since my main goal was to improve recall*
 
