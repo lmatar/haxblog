@@ -178,6 +178,7 @@ Recall answers what proportion of true positives was identified correctly?
 Area under the ROC curve tells you how good your model is at ranking predictions
 
 ![metrics](/images/metrics.png)
+*Image gotten from [this article](https://medium.com/@shrutisaxena0617/precision-vs-recall-386cf9f89488)*
 
 *Note: A **true positive** is when the model correctly predicts a scored goal. **True negative** when it correctly predicts a missed goal. **False positive** is when the model incorrectly predicts that a miss will score. And **false negative** is when the model incorrectly predicts that a goal will miss.*
 
@@ -187,18 +188,18 @@ The results below are from the testing data since those are the important metric
 
 These were Edwin’s final results:
 
-| Model         | Parameters   | Features | Accuracy| Precision| Recall | ROC AUC|
-| ------------- | ------------ | -------- | --------| ---------| -------| -------|
-| Random Forest | max_depth=12 | goal_distance, goal_angle, defender_dist, closest_defender, defenders_within_box, in_box, in_shot, ball_speed|  0.978   |  0.729    | 0.197  | 0.598   |
+| Model         | Features | Accuracy| Precision| Recall | ROC AUC|
+| ------------- | -------- | --------| ---------| -------| -------|
+| Random Forest (max_depth=12) | goal_distance, goal_angle, defender_dist, closest_defender, defenders_within_box, in_box, in_shot, ball_speed|  0.978   |  0.729    | 0.197  | 0.598   |
 
-*Note: Edwin’s results here are slightly different from his blog post because after Edwin deployed his models, we changed the filtering to only 3v3 and 4v4 match stadiums. These are the performance scores for Edwon’s model on the same test dataset as mine so that we can make sure to compare more accurately.*
+*Note: Edwin’s results here are slightly different from his blog post because after Edwin deployed his models, we changed the filtering to only 3v3 and 4v4 match stadiums. These are the performance scores for Edwin’s model on the same test dataset as mine so that we can make sure to compare more accurately.*
 
 These are my results of my top two models after improving:
 
-| Model         | Parameters | Features | Accuracy| Precision| Recall| ROC AUC|
-| ------------- | -----------| ---------| --------| ---------| ------| -------|
-| Random Forest | max_depth=15 | goal_distance, goal_angle, defender_dist, closest_defender, defenders_within_box, in_box, in_shot, ball_speed|  0.980   |  0.745    | 0.320  | 0.658 |
-| Random Forest | max_depth=15  | goal_angle, goal_distance, defender_dist, closest_defender, in_box, defenders_within_shot, in_shot, ball_speed, on_goal, player_speed, weighted_def_dist |  0.980   |  0.767    | 0.292  | 0.645  |
+| Model         | Features | Accuracy| Precision| Recall| ROC AUC|
+| ------------- | ---------| --------| ---------| ------| -------|
+| Random Forest (max_depth=15) | goal_distance, goal_angle, defender_dist, closest_defender, defenders_within_box, in_box, in_shot, ball_speed|  0.980   |  0.745    | 0.320  | 0.658 |
+| Random Forest (max_depth=15) | goal_angle, goal_distance, defender_dist, closest_defender, in_box, defenders_within_shot, in_shot, ball_speed, on_goal, player_speed, weighted_def_dist |  0.980   |  0.767    | 0.292  | 0.645  |
 
 *Both of these models are deployed but I decided the to compare the first one since my main goal was to improve recall*
 
@@ -215,6 +216,7 @@ The project started out with a very poorly-performing model and Edwin had the ch
 This is the statistical long tail curve:
 
 ![longtail](/images/longtail.png)
+*Image gotten from [here](https://slidemodel.com/templates/long-tail-powerpoint-template/)*
 
 This model has learned to predict XG for some common goals, but the long tail is filled with many kinds of goals that might be less common or unexpected in some way. Making progress on predicting those goals will be slower and more incremental than the short head.
 
