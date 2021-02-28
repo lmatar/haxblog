@@ -62,30 +62,30 @@ HaxBall is a popular game with its own API and Vinesh created a way to collect a
 ## What data was collected?
 Each match record contains these seven kinds of data. Here are all seven kinds with some examples of what is stored in them. You can find the complete data schema in the HaxClass repo.
 
-- score: One record that describes the final score.
+1. score: One record that describes the final score.
  - red: Number of goals scored for the red team.
  - blue: Number of goals scored for the blue team.
  - time: Duration of the match, in seconds, including overtime.
  - scoreLimit: Number of goals needed to win by goals.
  - timeLimit: Time limit in seconds for regulation.
-- stadium: One record that describes the stadium name which is mapped to additional data in a dictionary
+2. stadium: One record that describes the stadium name which is mapped to additional data in a dictionary
  - Ex: "NAFL Official Map v1"
  - goalposts: The coordinates and size off all four posts
  - bounds: The field X and Y coordinates for bounds
  - ball: Radius of the ball
-- players: List of players in the game
+3. players: List of players in the game
  - id: Numerical ID for player, unique for the match, but may not be the same across matches.
  - name: Player screen name.
  - team: Player team at the end of the match, either red or blue.
-- goals: List of the goals scored
-- kicks: Lists of times players kicked the ball
-- possessions: Lists of periods when players possessed the ball
+4. goals: List of the goals scored
+5. kicks: Lists of times players kicked the ball
+6. possessions: Lists of periods when players possessed the ball
  - start: Match time when the possession started, in seconds.
  - end: Match time when the possession ended, in seconds.
  - playerId: Numerical ID of player who possessed the ball.
  - playerName: Screen name of player who possessed the ball.
  - team: Team of player who possessed the ball
-- positions: Lists of the positions of players at each time step.
+7. positions: Lists of the positions of players at each time step.
 
 When I started this project, I had to work with the codebase and dataset that Vinesh had created. This meant I had to take time to understand the data schema and code and how to work with it before being able to improve on it. This dataset that we had was large and it was in a challenging format. There were thousands of different matches with millions of data points about player positions and shots.
 
