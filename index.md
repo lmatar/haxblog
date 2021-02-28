@@ -95,7 +95,7 @@ I took time to delve into the data and analyze it and test my knowledge by writi
 Before I started developing the features of the project, I was able to get feedback from students who played a few HaxBall games and look at Edwin’s model predictions. This feedback helped me understand a user’s point of view and helped me brainstorm further about how to improve the model based on that feedback.
 
 My features that I wanted to create were:
-- Player Speed: Speed of the players when the shot occured
+- **Player Speed**: Speed of the players when the shot occured
 - **Zone separation**: Separate the field into zones
 - **Shot intersection**: Based on the angle of the player to the ball, check if path intersect between the goalposts
 - **Weighted post hits**: Award 0.5 for hitting the post or being close to the goal
@@ -185,10 +185,20 @@ These were Edwin’s final results:
 
 *Note: Edwin’s results here are slightly different from his blog post because after Edwin deployed his models, we changed the filtering to only 3v3 and 4v4 match stadiums. These are the performance scores for Edwon’s model on the same test dataset as mine so that we can make sure to compare more accurately.*
 
-
 These are my results of my top two models after improving:
+| Model         | Parameters    | Features      | Accuracy | Precision | Recall | ROC AUC |
+| ------------- | ------------- | ------------- | ---------| ----------| -------| --------|
+| Random Forest | max_depth=15  | goal_distance,goal_angle, defender_dist, closest_defender, defenders_within_box, in_box, in_shot, ball_speed|  0.980   |  0.745    | 0.320  | 0.658   |
+| Random Forest | max_depth=15  | goal_angle, goal_distance, defender_dist, closest_defender, in_box, defenders_within_shot, in_shot, ball_speed, on_goal, player_speed, weighted_def_dist |  0.980   |  0.767    | 0.292  | 0.645  |
+
+*Both of these models are deployed but I decided the to compare the first one since my main goal was to improve recall*
 
 My improvements were:
+| Accuracy      | Precision     | Recall        | ROC AUC       |
+| ------------- | ------------- | ------------- | --------------|
+| Before: 0.978 | Before: 0.729 | Before: 0.197 | Before: 0.598 |
+| After: 0.980  | After: 0.745  | After: 0.320  | After: 0.658  |
+| Improvement: **(+0.2%)**| Improvement: **(+1.6%)**| Improvement: **(+12.3%)**| Improvement: **(+.06%)**|
 
 The project started out with a very poorly-performing model and Edwin had the challenge of producing much stronger models. My challenge was to continue improving a strong model, which brings up the challenge of “long tail”.
 
@@ -223,9 +233,10 @@ Before this improvement, it took 7.3 seconds to start up the server and after it
 
 # How to view my model?
 My model has been deployed and is live for you to check out!! You can also see the Haxml repo to view my contribution.
-My work on github
-My model predictions on real matches in Haxball
-My model predictions on the latest HaxBall matches
+
+[My work on github](https://github.com/vingkan/haxml)
+[My model predictions on real matches in Haxball](https://vingkan.github.io/haxclass/hub/xg.html?m=-MPezK7EDe-dIZ-8tMzT&clf=lynn_rf_weighted)
+[My model predictions on the latest HaxBall matches](https://vingkan.github.io/haxclass/hub/)
 
 
 ### Contact Information
