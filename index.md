@@ -122,7 +122,6 @@ Here is the pseudo code for the feature:
 - Get the y-value of the ball when the x-value is equal to goalpost using point-slope
 - Check if the y-value is in between the goal posts
 - Return 1 if shot is on goal, .5 if it hits the post, and 0 if it isn't on goal
-
 ``` 
 *You can find the full code [here](https://github.com/vingkan/haxml/blob/main/notebooks/compare_models-lynn.ipynb)*
 
@@ -151,7 +150,6 @@ Pseudo code:
 - Get the closest defender to the shooter
 - Count the number of defenders within a radius 
 - If a defender is closer than 4 units, then add .5 to the weight of the defender
-
 ```
 This small enhancement was able to improve the model and surprisingly, some models improved when I had both the weighted defender distance I created and the similar feature Edwin created. 
 
