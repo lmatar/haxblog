@@ -54,38 +54,38 @@ Many of us are used to hearing about shots on goal as the main statistic that po
 Shots on goal doesn’t take into consideration anything other than the number of shots a team had. Whether the shot was from the midline or a shot within the box, you still get one more shot added onto the shots on goal. XG takes into account the quality.
 
 Here is a video that contains more information about the differences:
-https://www.youtube.com/watch?v=5meVpsaupO4 
+{% include youtubePlayer.html id="5meVpsaupO4" %}
 
 # Haxball Machine Learning Project!
-HaxBall is a popular game with its own API and Vinesh created a way to collect a large dataset from the game. Edwin and I were the first two people to work on this HaxBall dataset! This unique project had multiple steps to it. The first was to explore the data, then brainstorm and develop features for the models, and finally compare different models and deploy them!
+HaxBall is a popular game with its own API and Vinesh created a way to collect a large dataset from the game. [Edwin](https://www.edwin.computer/haxml/) and I were the first two people to work on this HaxBall dataset! This unique project had multiple steps to it. The first was to explore the data, then brainstorm and develop features for the models, and finally compare different models and deploy them!
 
 ## What data was collected?
 Each match record contains these seven kinds of data. Here are all seven kinds with some examples of what is stored in them. You can find the complete data schema in the HaxClass repo.
 
-score: One record that describes the final score.
-red: Number of goals scored for the red team.
-blue: Number of goals scored for the blue team.
-time: Duration of the match, in seconds, including overtime.
-scoreLimit: Number of goals needed to win by goals.
-timeLimit: Time limit in seconds for regulation.
-stadium: One record that describes the stadium name which is mapped to additional data in a dictionary
-Ex: "NAFL Official Map v1"
-goalposts: The coordinates and size off all four posts
-bounds: The field X and Y coordinates for bounds
-ball: Radius of the ball
-players: List of players in the game
-id: Numerical ID for player, unique for the match, but may not be the same across matches.
-name: Player screen name.
-team: Player team at the end of the match, either red or blue.
-goals: List of the goals scored
-kicks: Lists of times players kicked the ball
-possessions: Lists of periods when players possessed the ball
-start: Match time when the possession started, in seconds.
-end: Match time when the possession ended, in seconds.
-playerId: Numerical ID of player who possessed the ball.
-playerName: Screen name of player who possessed the ball.
-team: Team of player who possessed the ball
-positions: Lists of the positions of players at each time step.
+- score: One record that describes the final score.
+ - red: Number of goals scored for the red team.
+ - blue: Number of goals scored for the blue team.
+ - time: Duration of the match, in seconds, including overtime.
+ - scoreLimit: Number of goals needed to win by goals.
+ - timeLimit: Time limit in seconds for regulation.
+- stadium: One record that describes the stadium name which is mapped to additional data in a dictionary
+ - Ex: "NAFL Official Map v1"
+ - goalposts: The coordinates and size off all four posts
+ - bounds: The field X and Y coordinates for bounds
+ - ball: Radius of the ball
+- players: List of players in the game
+ - id: Numerical ID for player, unique for the match, but may not be the same across matches.
+ - name: Player screen name.
+ - team: Player team at the end of the match, either red or blue.
+- goals: List of the goals scored
+- kicks: Lists of times players kicked the ball
+- possessions: Lists of periods when players possessed the ball
+ - start: Match time when the possession started, in seconds.
+ - end: Match time when the possession ended, in seconds.
+ - playerId: Numerical ID of player who possessed the ball.
+ - playerName: Screen name of player who possessed the ball.
+ - team: Team of player who possessed the ball
+- positions: Lists of the positions of players at each time step.
 
 When I started this project, I had to work with the codebase and dataset that Vinesh had created. This meant I had to take time to understand the data schema and code and how to work with it before being able to improve on it. This dataset that we had was large and it was in a challenging format. There were thousands of different matches with millions of data points about player positions and shots.
 
@@ -95,11 +95,11 @@ I took time to delve into the data and analyze it and test my knowledge by writi
 Before I started developing the features of the project, I was able to get feedback from students who played a few HaxBall games and look at Edwin’s model predictions. This feedback helped me understand a user’s point of view and helped me brainstorm further about how to improve the model based on that feedback.
 
 My features that I wanted to create were:
-Player Speed: Speed of the players when the shot occured
-Zone separation: Separate the field into zones
-Shot intersection: Based on the angle of the player to the ball, check if path intersect between the goalposts
-Weighted post hits: Award 0.5 for hitting the post or being close to the goal
-Weighted defenders: Apply weights to defenders based on how close they are to the goal or the player who is shooting
+- Player Speed: Speed of the players when the shot occured
+- **Zone separation**: Separate the field into zones
+- **Shot intersection**: Based on the angle of the player to the ball, check if path intersect between the goalposts
+- **Weighted post hits**: Award 0.5 for hitting the post or being close to the goal
+- **Weighted defenders**: Apply weights to defenders based on how close they are to the goal or the player who is shooting
 
 I was able to develop the player speed feature, add on to Edwin’s code for the weighted defender feature, and create the shot intersection feature, which was the most complicated. Let’s take a closer look at my features.
 
@@ -107,19 +107,18 @@ I was able to develop the player speed feature, add on to Edwin’s code for the
 Here is the pseudo code for the feature:
 
 ``` 
-Find the frames for just the shooter and the ball
-Look backwards through the frames
-Find the frame that has a distance that is <= 30
-Once found, make that the frame to compute the intersection
-If not found, get the last frame before the ball was kicked
-When the distance between the ball and player starts increasing, we know the ball was kicked
-Get the goalpost positions
-Get the y-value of the ball when the x-value is equal to goalpost using point-slope
-Check if the y-value is in between the goal posts
-Return 1 if shot is on goal, .5 if it hits the post, and 0 if it isn't on goal
+- Find the frames for just the shooter and the ball
+- Look backwards through the frames
+- Find the frame that has a distance that is <= 30
+- Once found, make that the frame to compute the intersection
+ - If not found, get the last frame before the ball was kicked. When the distance between the ball and player starts increasing, we know the ball was kicked
+- Get the goalpost positions
+- Get the y-value of the ball when the x-value is equal to goalpost using point-slope
+- Check if the y-value is in between the goal posts
+- Return 1 if shot is on goal, .5 if it hits the post, and 0 if it isn't on goal
 
 ``` 
-*You can find the full code here*
+*You can find the full code [here](https://github.com/vingkan/haxml/blob/main/notebooks/compare_models-lynn.ipynb)*
 
 I was able to draw the intersections calculated by my feature to ensure I was computing it correctly. This is a sample from one shot:
     
@@ -130,10 +129,10 @@ The green line is what the feature predicts the path of the ball and intersectio
 Pseudo code:
 
 ```
-Get a time range to be able to measure distance
-Start time is kicktime minus an offset
-Get the first and last position of a player from the start time till the ball was kicked
-Return the distance between the two positions divided by the time
+- Get a time range to be able to measure distance
+ - Start time is kicktime minus an offset
+- Get the first and last position of a player from the start time till the ball was kicked
+- Return the distance between the two positions divided by the time
  ```
 Player speed can have a big effect on the shot and this feature greatly impacted precision. With Edwin’s feature for ball speed and this player speed feature, we were able to greatly improve the model predictions. 
 
@@ -141,9 +140,9 @@ Player speed can have a big effect on the shot and this feature greatly impacted
 
 Pseudo code:
 ```
-Get the closest defender to the shooter
-Count the number of defenders within a radius 
-If a defender is closer than 4 units, then add .5 to the weight of the defender
+- Get the closest defender to the shooter
+- Count the number of defenders within a radius 
+- If a defender is closer than 4 units, then add .5 to the weight of the defender
 
 ```
 This small enhancement was able to improve the model and surprisingly, some models improved when I had both the weighted defender distance I created and the similar feature Edwin created. 
@@ -152,27 +151,27 @@ This small enhancement was able to improve the model and surprisingly, some mode
 There are many different algorithms out there for machine learning! This article compares some of the most popular ones and goes into some of the math of them if you are interested in that. 
 
 I tested the following models:
-K-nearest neighbors
-Decision Trees
-Random Forest
-Ada Boost
-GaussianNB
+- K-nearest neighbors
+- Decision Trees
+- Random Forest
+- Ada Boost
+- GaussianNB
 
 I noticed that Random Forest consistently ranked higher in all metrics so I decided to stick with that. Random Forest uses ensemble learning which combines learning models in order to increase the overall result. It has the ability to build many decision trees and then merges them in order to get more accuracy and better predictions. 
 
 ## Overall results and improvements
 For this project, our main focuses were on these metrics of the model:
-Accuracy
-Precision
-Recall
-Area under the ROC curve
+- Accuracy
+- Precision
+- Recall
+- Area under the ROC curve
 
 Accuracy is the number of correctly predicted data points out of all the data points.
 Precision answers what proportion of positives identifications was actually correct
 Recall answers what proportion of true positives was identified correctly?
 Area under the ROC curve tells you how good your model is at ranking predictions
 
-*Note: A true positive is when the model correctly predicts a scored goal. True negative when it correctly predicts a missed goal. False positive is when the model incorrectly predicts that a miss will score. And false negative is when the model incorrectly predicts that a goal will miss.*
+*Note: A **true positive** is when the model correctly predicts a scored goal. **True negative** when it correctly predicts a missed goal. **False positive** is when the model incorrectly predicts that a miss will score. And **false negative** is when the model incorrectly predicts that a goal will miss.*
 
 When we build a model,we need to choose a train/test split. We use this split because it allows us to fit the model on a training set and then see the predictions on the test data that wasn’t trained. The results allow us to compare the performance of the model for the predictive XG problem. 
 
@@ -180,10 +179,9 @@ The results below are from the testing data since those are the important metric
 
 These were Edwin’s final results:
 
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+| Model         | Parameters    | Features      | Accuracy | Precision | Recall | ROC AUC |
+| ------------- | ------------- | ------------- | ---------| ----------| -------| --------|
+| Random Forest | max_depth=12  | goal_distance,goal_angle, defender_dist, closest_defender, defenders_within_box, in_box, in_shot, ball_speed|  0.978   |  0.729    | 0.197  | 0.598   |
 
 *Note: Edwin’s results here are slightly different from his blog post because after Edwin deployed his models, we changed the filtering to only 3v3 and 4v4 match stadiums. These are the performance scores for Edwon’s model on the same test dataset as mine so that we can make sure to compare more accurately.*
 
