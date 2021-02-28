@@ -34,10 +34,10 @@ Let’s dive deeper into this project and see what the expected goal (XG) is and
 Let’s look at the replay!
 
 ### Shot #1
-![goal1](/images/goal1.gif)
+![goal1](/images/goal2.gif)
 
 ### Shot #2
-![goal2](/images/goal2.gif)
+![goal2](/images/goal1.gif)
 
 *The second shot was actually the one that went in! My model was able to predict a higher XG for the goal that went in. Let’s look at how the model works!*
 
@@ -196,14 +196,15 @@ These were Edwin’s final results:
 *Note: Edwin’s results here are slightly different from his blog post because after Edwin deployed his models, we changed the filtering to only 3v3 and 4v4 match stadiums. These are the performance scores for Edwon’s model on the same test dataset as mine so that we can make sure to compare more accurately.*
 
 These are my results of my top two models after improving:
+
 | Model         | Parameters    | Features      | Accuracy | Precision | Recall | ROC AUC |
 | ------------- | ------------- | ------------- | ---------| ----------| -------| --------|
-| Random Forest | max_depth=15  | goal_distance,goal_angle, defender_dist, closest_defender, defenders_within_box, in_box, in_shot, ball_speed|  0.980   |  0.745    | 0.320  | 0.658   |
-| Random Forest | max_depth=15  | goal_angle, goal_distance, defender_dist, closest_defender, in_box, defenders_within_shot, in_shot, ball_speed, on_goal, player_speed, weighted_def_dist |  0.980   |  0.767    | 0.292  | 0.645  |
+| Random Forest | max_depth=15  | goal_distance,goal_angle, defender_dist, closest_defender, defenders_within_box, in_box, in_shot, ball_speed|  0.980   |  0.745    | 0.320  | 0.658   | | Random Forest | max_depth=15  | goal_angle, goal_distance, defender_dist, closest_defender, in_box, defenders_within_shot, in_shot, ball_speed, on_goal, player_speed, weighted_def_dist |  0.980   |  0.767    | 0.292  | 0.645  |
 
 *Both of these models are deployed but I decided the to compare the first one since my main goal was to improve recall*
 
 My improvements were:
+
 | Accuracy      | Precision     | Recall        | ROC AUC       |
 | ------------- | ------------- | ------------- | --------------|
 | Before: 0.978 | Before: 0.729 | Before: 0.197 | Before: 0.598 |
@@ -238,9 +239,7 @@ One of my most complicated features was the shot intersection feature. While I w
 I never had to understand data that is this large and complicated. The dataset is unique and the format can get confusing. I learned that before developing any feature, I had to know the data very well or else I would be wasting time debugging data structure related errors.
 
 ## Keep scaling in mind at the start of any project
-I had the ability to work on a scaling problem in this project as well. Once my model was deployed, Vinesh noticed that the loading time for the models drastically increased. We wanted to make sure that as more models are deployed, this problem doesn’t occur. I was able to get the models to be lazily evaluated instead of loading all the models at once. This means that only the default model will be loaded right away but all the other models will only be loaded when the user wants to see their predictions.
-
-Before this improvement, **it took 7.3 seconds to start up the server and after it went all the way down to 2.5 seconds!**
+I had the ability to work on a scaling problem in this project as well. Once my model was deployed, Vinesh noticed that the loading time for the models drastically increased. We wanted to make sure that as more models are deployed, this problem doesn’t occur. I was able to get the models to be lazily evaluated instead of loading all the models at once. This means that only the default model will be loaded right away but all the other models will only be loaded when the user wants to see their predictions. Before this improvement, **it took 7.3 seconds to start up the server and after it went all the way down to 2.5 seconds!**
 
 # How to view my model?
 My model has been deployed and is live for you to check out!! You can also see the Haxml repo to view my contribution.
