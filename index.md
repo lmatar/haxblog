@@ -46,7 +46,7 @@ An XG of one means that a kick will 100% go into the goal and an XG of 0.5 means
 We design XG to gain insight about a team's overall performance and shot quality, it can never be 100% correct and accurately predict all goals since soccer is far too complicated.
 
 This video summarizes XG and what you need to know about it:
-https://www.youtube.com/watch?v=zSaeaFcm1SY
+{% include youtubePlayer.html id="zSaeaFcm1SY" %}
 
 ## Why not just use shots on goal instead of XG?
 Many of us are used to hearing about shots on goal as the main statistic that pops up on the screen while watching soccer. So you may be wondering why we need XG when we have shots on goal. 
