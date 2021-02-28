@@ -27,7 +27,7 @@ Expected Goal = 0.510
 
 Now with the images and the expected goal value, which shot is more likely to be a **goal** in your opinion?
  - Shot #1
- -Shot #2
+ - Shot #2
 
 Let’s dive deeper into this project and see what the expected goal (XG) is and how I was able to make a machine learning model predict it!
 
@@ -36,7 +36,7 @@ Let’s look at the replay!
 *The second shot was actually the one that went in! My model was able to predict a higher XG for the goal that went in. Let’s look at how the model works!*
 
 # What is Haxball?
-The gameplay shown in the animations above was taken directly from HaxBall. {HaxBall}(haxball.com) is a 2D physics-based online multiplayer soccer game. Each user is a circle and can interact with the game using the arrow keys to move and the space bar to pass or shoot. HaxBall supports many kinds of matches, I trained my models on 3v3 and 4v4 matches.
+The gameplay shown in the animations above was taken directly from HaxBall. [HaxBall](haxball.com) is a 2D physics-based online multiplayer soccer game. Each user is a circle and can interact with the game using the arrow keys to move and the space bar to pass or shoot. HaxBall supports many kinds of matches, I trained my models on 3v3 and 4v4 matches.
 
 # What is XG?
 Expected Goals or XG is a numerical value that estimates the probability of a kick to score. XG can also be calculated for specific players, kicks, or entire teams.
