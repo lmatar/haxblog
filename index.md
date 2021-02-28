@@ -189,16 +189,16 @@ The results below are from the testing data since those are the important metric
 
 These were Edwin’s final results:
 
-| Model         | Parameters    | Features   | Accuracy | Precision | Recall | ROC AUC |
-| ------------- | ------------- | ---------- | ---------| ----------| -------| --------|
-| Random Forest | max_depth=12  | goal_distance,goal_angle, defender_dist, closest_defender, defenders_within_box, in_box, in_shot, ball_speed|  0.978   |  0.729    | 0.197  | 0.598   |
+| Model         | Parameters   | Features | Accuracy| Precision| Recall | ROC AUC|
+| ------------- | ------------ | -------- | --------| ---------| -------| -------|
+| Random Forest | max_depth=12 | goal_distance,goal_angle, defender_dist, closest_defender, defenders_within_box, in_box, in_shot, ball_speed|  0.978   |  0.729    | 0.197  | 0.598   |
 
 *Note: Edwin’s results here are slightly different from his blog post because after Edwin deployed his models, we changed the filtering to only 3v3 and 4v4 match stadiums. These are the performance scores for Edwon’s model on the same test dataset as mine so that we can make sure to compare more accurately.*
 
 These are my results of my top two models after improving:
 
-| Model         | Parameters   | Features   | Accuracy | Precision | Recall | ROC AUC |
-| ------------- | ------------ | ---------- | ---------| ----------| -------| --------|
+| Model         | Parameters | Features | Accuracy| Precision| Recall| ROC AUC|
+| ------------- | -----------| ---------| --------| ---------| ------| -------|
 | Random Forest | max_depth=15 | goal_distance,goal_angle, defender_dist, closest_defender, defenders_within_box, in_box, in_shot, ball_speed|  0.980   |  0.745    | 0.320  | 0.658 |
 | Random Forest | max_depth=15  | goal_angle, goal_distance, defender_dist, closest_defender, in_box, defenders_within_shot, in_shot, ball_speed, on_goal, player_speed, weighted_def_dist |  0.980   |  0.767    | 0.292  | 0.645  |
 
@@ -206,10 +206,10 @@ These are my results of my top two models after improving:
 
 My improvements were:
 
-| Accuracy      | Precision     | Recall        | ROC AUC       |
-| ------------- | ------------- | ------------- | --------------|
-| Before: 0.978 | Before: 0.729 | Before: 0.197 | Before: 0.598 |
-| After: 0.980  | After: 0.745  | After: 0.320  | After: 0.658  |
+| Accuracy      | Precision     | Recall        | ROC AUC      |
+| ------------- | ------------- | ------------- | -------------|
+| Before: 0.978 | Before: 0.729 | Before: 0.197 | Before: 0.598|
+| After: 0.980  | After: 0.745  | After: 0.320  | After: 0.658 |
 | Improvement: **(+0.2%)**| Improvement: **(+1.6%)**| Improvement: **(+12.3%)**| Improvement: **(+.06%)**|
 
 The project started out with a very poorly-performing model and Edwin had the challenge of producing much stronger models. My challenge was to continue improving a strong model, which brings up the challenge of “long tail”.
