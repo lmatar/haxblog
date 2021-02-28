@@ -17,10 +17,10 @@ From the two pictures shown above, which shot is more likely to be a **goal** in
 
 Now lets look at the expected goal score that my model predicted...
 
-#### Shot #1
+### Shot #1
 Expected Goal = 0.193
 
-#### Shot #2
+### Shot #2
 Expected Goal = 0.510
 
 *Note: If you are not sure what these values mean, don’t worry! I will explain it soon.* 
@@ -32,6 +32,12 @@ Now with the images and the expected goal value, which shot is more likely to be
 Let’s dive deeper into this project and see what the expected goal (XG) is and how I was able to make a machine learning model predict it!
 
 Let’s look at the replay!
+
+### Shot #1
+![goal1](/images/goal1.gif)
+
+### Shot #2
+![goal2](/images/goal2.gif)
 
 *The second shot was actually the one that went in! My model was able to predict a higher XG for the goal that went in. Let’s look at how the model works!*
 
@@ -60,7 +66,7 @@ Here is a video that contains more information about the differences:
 HaxBall is a popular game with its own API and Vinesh created a way to collect a large dataset from the game. [Edwin](https://www.edwin.computer/haxml/) and I were the first two people to work on this HaxBall dataset! This unique project had multiple steps to it. The first was to explore the data, then brainstorm and develop features for the models, and finally compare different models and deploy them!
 
 ## What data was collected?
-Each match record contains these seven kinds of data. Here are all seven kinds with some examples of what is stored in them. You can find the complete data schema in the HaxClass repo.
+Each match record contains these seven kinds of data. Here are all seven kinds with some examples of what is stored in them. You can find the complete data schema in the [HaxClass repo](https://github.com/vingkan/haxclass).
 
 1. score: One record that describes the final score.
  - red: Number of goals scored for the red team.
@@ -121,7 +127,9 @@ Here is the pseudo code for the feature:
 *You can find the full code [here](https://github.com/vingkan/haxml/blob/main/notebooks/compare_models-lynn.ipynb)*
 
 I was able to draw the intersections calculated by my feature to ensure I was computing it correctly. This is a sample from one shot:
-    
+
+![shotintersection](/images/shotintersect.png)
+
 The green line is what the feature predicts the path of the ball and intersection will be and the green circles were the actual path from the match. My feature is able to predict it well but it is not exact since we had to search for the frame closest to when the player kicks the ball because we don't know exactly when they do, so a small difference in position can lead to possibly a large angle change in course.
 
 ### Player speed
@@ -171,6 +179,8 @@ Precision answers what proportion of positives identifications was actually corr
 Recall answers what proportion of true positives was identified correctly?
 Area under the ROC curve tells you how good your model is at ranking predictions
 
+![metrics](/images/metrics.png)
+
 *Note: A **true positive** is when the model correctly predicts a scored goal. **True negative** when it correctly predicts a missed goal. **False positive** is when the model incorrectly predicts that a miss will score. And **false negative** is when the model incorrectly predicts that a goal will miss.*
 
 When we build a model,we need to choose a train/test split. We use this split because it allows us to fit the model on a training set and then see the predictions on the test data that wasn’t trained. The results allow us to compare the performance of the model for the predictive XG problem. 
@@ -204,6 +214,7 @@ The project started out with a very poorly-performing model and Edwin had the ch
 
 This is the statistical long tail curve:
 
+![longtail](/images/longtail.png)
 
 This model has learned to predict XG for some common goals, but the long tail is filled with many kinds of goals that might be less common or unexpected in some way. Making progress on predicting those goals will be slower and more incremental than the short head.
 
@@ -229,13 +240,15 @@ I never had to understand data that is this large and complicated. The dataset i
 ## Keep scaling in mind at the start of any project
 I had the ability to work on a scaling problem in this project as well. Once my model was deployed, Vinesh noticed that the loading time for the models drastically increased. We wanted to make sure that as more models are deployed, this problem doesn’t occur. I was able to get the models to be lazily evaluated instead of loading all the models at once. This means that only the default model will be loaded right away but all the other models will only be loaded when the user wants to see their predictions.
 
-Before this improvement, it took 7.3 seconds to start up the server and after it went all the way down to 2.5 seconds!
+Before this improvement, **it took 7.3 seconds to start up the server and after it went all the way down to 2.5 seconds!**
 
 # How to view my model?
 My model has been deployed and is live for you to check out!! You can also see the Haxml repo to view my contribution.
 
-[My work on github](https://github.com/vingkan/haxml)
+[Haxml repo with my contributions on github](https://github.com/vingkan/haxml)
+
 [My model predictions on real matches in Haxball](https://vingkan.github.io/haxclass/hub/xg.html?m=-MPezK7EDe-dIZ-8tMzT&clf=lynn_rf_weighted)
+
 [My model predictions on the latest HaxBall matches](https://vingkan.github.io/haxclass/hub/)
 
 
