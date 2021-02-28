@@ -178,6 +178,7 @@ Recall answers what proportion of true positives was identified correctly?
 Area under the ROC curve tells you how good your model is at ranking predictions
 
 ![metrics](/images/metrics.png)
+
 *Image gotten from [this article](https://medium.com/@shrutisaxena0617/precision-vs-recall-386cf9f89488)*
 
 *Note: A **true positive** is when the model correctly predicts a scored goal. **True negative** when it correctly predicts a missed goal. **False positive** is when the model incorrectly predicts that a miss will score. And **false negative** is when the model incorrectly predicts that a goal will miss.*
@@ -216,6 +217,7 @@ The project started out with a very poorly-performing model and Edwin had the ch
 This is the statistical long tail curve:
 
 ![longtail](/images/longtail.png)
+
 *Image gotten from [here](https://slidemodel.com/templates/long-tail-powerpoint-template/)*
 
 This model has learned to predict XG for some common goals, but the long tail is filled with many kinds of goals that might be less common or unexpected in some way. Making progress on predicting those goals will be slower and more incremental than the short head.
