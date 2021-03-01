@@ -1,4 +1,5 @@
 ![Haxball!](/images/haxballtitle.png)
+<link rel="shortcut icon" type="image/x-icon" href="images/header.ico">
 
 # Introduction
 Before we dive into the different aspects of this project, I have a challenge for you!
